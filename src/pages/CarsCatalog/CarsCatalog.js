@@ -6,7 +6,7 @@ import DescriptionModal from '../../components/DescriptionModal/DescriptionModal
 
 const CarsCatalog = () => {
   const [cars, setCars] = useState([]);
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
   const [chosenFavoriteCars, setChosenFavoriteCars] = useState(
     // []
     () => {
@@ -18,7 +18,11 @@ const CarsCatalog = () => {
   const [showDescriptionModal, setShowDescriptionModal] = useState(false);
   const [carForDescriptionModal, setCarForDescriptionModal] = useState({});
 
-  const params = { page: `${page}`, limit: 8 };
+  const params = {
+    page: 1,
+    // `${page}`
+    limit: 8,
+  };
 
   // const saveToLocalStorage = updatedFavoriteCars => {
   //   localStorage.setItem('favoriteCars', JSON.stringify(updatedFavoriteCars));

@@ -38,7 +38,7 @@ const SingleCar = ({
   // console.log(chosenFavoriteCars);
 
   const isFavoriteCar = chosenFavoriteCars.some(
-    chosenCar => chosenCar.id === car.id
+    chosenCar => chosenCar.id === id
   );
 
   function getPicture(img, photoLink) {
@@ -121,25 +121,25 @@ const SingleCar = ({
 
 export default SingleCar;
 
-// SingleCar.propTypes = {
-//   car: PropTypes.shape({
-//     address: PropTypes.string.isRequired,
-//     id: PropTypes.number.isRequired,
-//     img: PropTypes.string,
-//     photoLink: PropTypes.string,
-//     make: PropTypes.string.isRequired,
-//     mileage: PropTypes.number.isRequired,
-//     model: PropTypes.string.isRequired,
-//     rentalCompany: PropTypes.string.isRequired,
-//     rentalPrice: PropTypes.string.isRequired,
-//     type: PropTypes.string.isRequired,
-//     year: PropTypes.number.isRequired,
-//   }).isRequired,
-//   handleFavoriteBtnClick: PropTypes.func.isRequired,
-//   openDescriptionModal: PropTypes.func.isRequired,
-//   chosenFavoriteCars: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.number.isRequired,
-//     })
-//   ).isRequired,
-// };
+SingleCar.propTypes = {
+  car: PropTypes.shape({
+    address: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    img: PropTypes.string,
+    photoLink: PropTypes.string,
+    make: PropTypes.string.isRequired,
+    mileage: PropTypes.number.isRequired,
+    model: PropTypes.string.isRequired,
+    rentalCompany: PropTypes.string.isRequired,
+    rentalPrice: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired,
+  }).isRequired,
+  handleFavoriteBtnClick: PropTypes.func.isRequired,
+  openDescriptionModal: PropTypes.func.isRequired,
+  chosenFavoriteCars: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+};
