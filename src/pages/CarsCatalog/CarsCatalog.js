@@ -7,22 +7,19 @@ import DescriptionModal from '../../components/DescriptionModal/DescriptionModal
 const CarsCatalog = () => {
   const [cars, setCars] = useState([]);
   // const [page, setPage] = useState(1);
-  const [chosenFavoriteCars, setChosenFavoriteCars] = useState(
-    // []
-    () => {
-      return JSON.parse(window.localStorage.getItem('favoriteCars')) ?? '';
-    }
-  );
+  const [chosenFavoriteCars, setChosenFavoriteCars] = useState(() => {
+    return JSON.parse(window.localStorage.getItem('favoriteCars')) ?? '';
+  });
 
   console.log(chosenFavoriteCars, 'hey');
   const [showDescriptionModal, setShowDescriptionModal] = useState(false);
   const [carForDescriptionModal, setCarForDescriptionModal] = useState({});
 
-  const params = {
-    page: 1,
-    // `${page}`
-    limit: 8,
-  };
+  // const params = {
+  //   page: 1,
+  //   // `${page}`
+  //   limit: 8,
+  // };
 
   // const saveToLocalStorage = updatedFavoriteCars => {
   //   localStorage.setItem('favoriteCars', JSON.stringify(updatedFavoriteCars));
@@ -33,7 +30,13 @@ const CarsCatalog = () => {
       try {
         const { data } = await axios.get(
           'https://6505984fef808d3c66f036e9.mockapi.io/advert',
-          { params: params }
+          {
+            params: {
+              page: 1,
+              // `${page}`
+              limit: 8,
+            },
+          }
         );
 
         setCars(data);
@@ -42,16 +45,6 @@ const CarsCatalog = () => {
       }
     };
     fetchCars();
-
-    // const parsedFavoriteCars = JSON.parse(localStorage.getItem('favoriteCars'));
-
-    // console.log(parsedFavoriteCars, 'hi');
-
-    // if (parsedFavoriteCars) {
-    //   return setChosenFavoriteCars(parsedFavoriteCars);
-    //   console.log(chosenFavoriteCars, 'hello');
-    //   console.log(parsedFavoriteCars, 'ho');
-    // }
   }, []);
 
   useEffect(() => {
