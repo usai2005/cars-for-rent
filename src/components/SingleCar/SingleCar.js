@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import {
   Card,
   ImgThumb,
@@ -33,17 +34,24 @@ const SingleCar = ({
     year,
   } = car;
 
-  const isFavoriteCar = chosenFavoriteCars.some(
-    chosenCar => chosenCar.id === id
-  );
+  const [isThisCarFavorite, setIsThisCarFavorite] = useState(false);
+
+  useEffect(() => {
+    chosenFavoriteCars.length > 0 &&
+      setIsThisCarFavorite(
+        chosenFavoriteCars.some(chosenCar => chosenCar.id === id)
+      );
+  }, [id, chosenFavoriteCars]);
+
+  // console.log(isFavoriteCar);
 
   const picture = getPicture(img, photoLink);
 
   const addressArr = address.split(', ');
 
-  const iconBorderColor = isFavoriteCar ? '#3470FF' : '#FFFFFF';
+  const iconBorderColor = isThisCarFavorite ? '#3470FF' : '#FFFFFF';
 
-  const iconColor = isFavoriteCar ? '#3470FF' : 'none';
+  const iconColor = isThisCarFavorite ? '#3470FF' : 'none';
 
   return (
     <Card>
@@ -76,7 +84,6 @@ const SingleCar = ({
           </FirstCharacteristicsLine>
         </li>
         <li>
-          {' '}
           <SecondCharacteristicsLine>
             <li>
               <p>{type}</p>

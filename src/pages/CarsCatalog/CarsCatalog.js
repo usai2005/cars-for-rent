@@ -13,20 +13,10 @@ const CarsCatalog = () => {
     return JSON.parse(window.localStorage.getItem('favoriteCars')) ?? '';
   });
 
-  console.log(chosenFavoriteCars, 'hey');
-
   const [showDescriptionModal, setShowDescriptionModal] = useState(false);
   const [carForDescriptionModal, setCarForDescriptionModal] = useState({});
 
-  // const params = {
-  //   page: 1,
-  //   // `${page}`
-  //   limit: 8,
-  // };
-
-  // const saveToLocalStorage = updatedFavoriteCars => {
-  //   localStorage.setItem('favoriteCars', JSON.stringify(updatedFavoriteCars));
-  // };
+  console.log(chosenFavoriteCars, 'hi');
 
   useEffect(() => {
     const fetchCars = async () => {
@@ -53,24 +43,25 @@ const CarsCatalog = () => {
     const prevChosenCars = localStorage.getItem('favoriteCars');
 
     if (prevChosenCars !== JSON.stringify(chosenFavoriteCars)) {
-      console.log(prevChosenCars !== chosenFavoriteCars, 'he-he');
       localStorage.setItem('favoriteCars', JSON.stringify(chosenFavoriteCars));
     }
   }, [chosenFavoriteCars]);
 
   const handleFavoriteBtnClick = ({ car }) => {
-    if (chosenFavoriteCars.length === 0) {
-      return setChosenFavoriteCars([car]);
-    } else if (chosenFavoriteCars.includes(car)) {
-      const indexToRemove = chosenFavoriteCars.indexOf(car);
+    //   if (chosenFavoriteCars.length === 0) {
+    //     return setChosenFavoriteCars([car]);
+    //   } else if (chosenFavoriteCars.includes(car)) {
+    const indexToRemove = chosenFavoriteCars.findIndex(
+      chosenCar => chosenCar.id === car.id
+    );
 
+    if (indexToRemove === -1) {
+      setChosenFavoriteCars([...chosenFavoriteCars, car]);
+    } else {
       const updatedFavoriteCars = [...chosenFavoriteCars];
 
       updatedFavoriteCars.splice(indexToRemove, 1);
-
-      return setChosenFavoriteCars(updatedFavoriteCars);
-    } else {
-      return setChosenFavoriteCars([...chosenFavoriteCars, car]);
+      setChosenFavoriteCars(updatedFavoriteCars);
     }
   };
 
