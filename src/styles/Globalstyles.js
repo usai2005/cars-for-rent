@@ -1,10 +1,10 @@
-import { createGlobalStyle } from "styled-components";
-import "modern-normalize";
-import ManropeMedium from "../fonts/Manrope-Medium.ttf";
-import ManropeRegular from "../fonts/Manrope-Regular.ttf";
-import ManropeSemiBold from "../fonts/Manrope-SemiBold.ttf";
-import MontserratRegular from "../fonts/Montserrat-Regular.ttf";
-import MontserratSemiBold from "../fonts/Montserrat-SemiBold.ttf";
+import { createGlobalStyle } from 'styled-components';
+import 'modern-normalize';
+import ManropeMedium from '../fonts/Manrope-Medium.ttf';
+import ManropeRegular from '../fonts/Manrope-Regular.ttf';
+import ManropeSemiBold from '../fonts/Manrope-SemiBold.ttf';
+import MontserratRegular from '../fonts/Montserrat-Regular.ttf';
+import MontserratSemiBold from '../fonts/Montserrat-SemiBold.ttf';
 
 const GlobalStyle = createGlobalStyle`
 
@@ -83,7 +83,6 @@ button {
     border: none;
 
     padding: 0;
-
 }
 
 `;

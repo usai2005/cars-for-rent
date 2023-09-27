@@ -23,6 +23,8 @@ export const Modal = styled.div`
 
   width: 541px;
 
+  padding: 40px;
+
   max-width: 541px;
   height: 752px;
   max-height: 752px;
@@ -55,5 +57,160 @@ export const CloseIcon = styled.svg`
 
   &:hover {
     stroke: #3470ff;
+  }
+`;
+
+export const ImgThumb = styled.div`
+  width: 461px;
+  height: 248px;
+
+  overflow: hidden;
+
+  border-radius: 14px;
+
+  margin-bottom: 14px;
+
+  & img {
+    object-fit: contain;
+    object-position: 50% 50%;
+    width: 461px;
+    height: auto;
+  }
+`;
+
+export const ModelYear = styled.div`
+  display: flex;
+
+  margin-bottom: 8px;
+
+  & h2 {
+    font-size: 18px;
+    font-family: ManropeMedium;
+    font-weight: 500;
+    color: #121417;
+
+    line-height: calc(24 / 18);
+
+    & span {
+      color: #3470ff;
+    }
+  }
+`;
+
+export const Characteristics = styled.ul`
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 14px;
+`;
+
+export const FirstCharacteristicsLine = styled.ul`
+  display: flex;
+
+  margin-bottom: 4px;
+
+  & > li {
+    display: flex;
+    align-items: center;
+
+    height: 16px;
+
+    &:not(:last-child) {
+      margin-right: 6px;
+      padding-right: 6px;
+
+      border-right: 1px solid rgba(18, 20, 23, 0.1);
+    }
+  }
+
+  & p {
+    font-size: 12px;
+    font-family: ManropeRegular;
+    color: rgba(18, 20, 23, 0.5);
+  }
+`;
+
+export const SecondCharacteristicsLine = styled.ul`
+  display: flex;
+  & :not(:last-child) {
+    margin-right: 6px;
+    padding-right: 6px;
+
+    border-right: 1px solid rgba(18, 20, 23, 0.1);
+  }
+
+  & p {
+    font-size: 12px;
+    font-family: ManropeRegular;
+    color: rgba(18, 20, 23, 0.5);
+    line-height: calc(18 / 12);
+  }
+`;
+
+export const Description = styled.p`
+  margin-bottom: 24px;
+
+  color: #121417;
+  font-family: ManropeRegular;
+  font-size: 14px;
+  line-height: calc(20 / 14);
+`;
+
+export const ModuleTitle = styled.h3`
+  margin-bottom: 8px;
+
+  color: #121417;
+  font-family: ManropeMedium;
+  font-size: 14px;
+  line-height: calc(20 / 14);
+`;
+
+export const AccessoriesAndFunctionality = styled.ul`
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 14px;
+`;
+
+export const AccessoriesLine = styled.ul`
+  display: flex;
+
+  margin-bottom: 4px;
+
+  & > li {
+    display: flex;
+    align-items: center;
+
+    height: 16px;
+
+    &:not(:last-child) {
+      margin-right: 6px;
+      padding-right: 6px;
+
+      border-right: 1px solid rgba(18, 20, 23, 0.1);
+    }
+  }
+
+  & p {
+    font-size: 12px;
+    font-family: ManropeRegular;
+    color: rgba(18, 20, 23, 0.5);
+  }
+`;
+
+export const FunctionalityLine = styled.ul`
+  display: flex;
+  & :not(:last-child) {
+    margin-right: 6px;
+    padding-right: 6px;
+
+    border-right: 1px solid rgba(18, 20, 23, 0.1);
+  }
+
+  & p {
+    font-size: 12px;
+    font-family: ManropeRegular;
+    color: rgba(18, 20, 23, 0.5);
+    line-height: calc(18 / 12);
   }
 `;

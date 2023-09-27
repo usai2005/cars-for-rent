@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Card = styled.li`
   position: relative;
@@ -46,7 +46,7 @@ export const ModelYearPrice = styled.div`
     font-weight: 500;
     color: #121417;
 
-    line-height: calc(24 / 18);
+    line-height: calc(24 / 16);
 
     & span {
       color: #3470ff;
@@ -54,14 +54,12 @@ export const ModelYearPrice = styled.div`
   }
 `;
 
-export const ModelYear = styled.div``;
-
-export const Description = styled.div`
+export const Characteristics = styled.ul`
   display: flex;
   flex-direction: column;
 `;
 
-export const FirstDescriptionLine = styled.ul`
+export const FirstCharacteristicsLine = styled.ul`
   display: flex;
 
   margin-bottom: 4px;
@@ -87,7 +85,7 @@ export const FirstDescriptionLine = styled.ul`
   }
 `;
 
-export const SecondDescriptionLine = styled.ul`
+export const SecondCharacteristicsLine = styled.ul`
   display: flex;
   & :not(:last-child) {
     margin-right: 6px;
@@ -100,6 +98,7 @@ export const SecondDescriptionLine = styled.ul`
     font-size: 12px;
     font-family: ManropeRegular;
     color: rgba(18, 20, 23, 0.5);
+    line-height: calc(18 / 12);
   }
 `;
 
