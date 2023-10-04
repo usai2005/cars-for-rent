@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-// import Loader from '../../components/Loader/Loader';
+import Loader from '../../components/Loader/Loader';
 import SingleCar from '../../components/SingleCar/SingleCar';
 import { List, LoadMoreBtn, ButtonContainer } from './CarsCatalog.styled';
 import DescriptionModal from '../../components/DescriptionModal/DescriptionModal';
 
 const CarsCatalog = () => {
-  // const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [cars, setCars] = useState([]);
   const [page, setPage] = useState(1);
   const [chosenFavoriteCars, setChosenFavoriteCars] = useState(() => {
@@ -15,10 +15,10 @@ const CarsCatalog = () => {
 
   const [showDescriptionModal, setShowDescriptionModal] = useState(false);
   const [carForDescriptionModal, setCarForDescriptionModal] = useState({});
-
-  console.log(chosenFavoriteCars, 'hi');
+  const [isLoadMoreBtnShown, setIsLoadMoreBtnShown] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchCars = async () => {
       try {
         const { data } = await axios.get(
@@ -30,8 +30,15 @@ const CarsCatalog = () => {
             },
           }
         );
-
+        data.length < 8
+          ? setIsLoadMoreBtnShown(false)
+          : setIsLoadMoreBtnShown(true);
         setCars(data);
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
+        setIsLoading(false);
       } catch (error) {
         console.log(`Error: ${error.message}`);
       }
@@ -48,20 +55,21 @@ const CarsCatalog = () => {
   }, [chosenFavoriteCars]);
 
   const handleFavoriteBtnClick = ({ car }) => {
-    //   if (chosenFavoriteCars.length === 0) {
-    //     return setChosenFavoriteCars([car]);
-    //   } else if (chosenFavoriteCars.includes(car)) {
-    const indexToRemove = chosenFavoriteCars.findIndex(
-      chosenCar => chosenCar.id === car.id
-    );
-
-    if (indexToRemove === -1) {
-      setChosenFavoriteCars([...chosenFavoriteCars, car]);
+    if (chosenFavoriteCars.length === 0) {
+      return setChosenFavoriteCars([car]);
     } else {
-      const updatedFavoriteCars = [...chosenFavoriteCars];
+      const indexToRemove = chosenFavoriteCars.findIndex(
+        chosenCar => chosenCar.id === car.id
+      );
 
-      updatedFavoriteCars.splice(indexToRemove, 1);
-      setChosenFavoriteCars(updatedFavoriteCars);
+      if (indexToRemove === -1) {
+        setChosenFavoriteCars([...chosenFavoriteCars, car]);
+      } else {
+        const updatedFavoriteCars = [...chosenFavoriteCars];
+
+        updatedFavoriteCars.splice(indexToRemove, 1);
+        setChosenFavoriteCars(updatedFavoriteCars);
+      }
     }
   };
 
@@ -78,9 +86,9 @@ const CarsCatalog = () => {
     setShowDescriptionModal(false);
   };
 
-  // const permissionShowButton =
-
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <>
       <List>
         {cars.map(car => (
@@ -100,9 +108,11 @@ const CarsCatalog = () => {
         )}
       </List>
       <ButtonContainer>
-        <LoadMoreBtn onClick={onLoadMoreBtnClick} type="button">
-          Load more
-        </LoadMoreBtn>
+        {isLoadMoreBtnShown && (
+          <LoadMoreBtn onClick={onLoadMoreBtnClick} type="button">
+            Load more
+          </LoadMoreBtn>
+        )}
       </ButtonContainer>
     </>
   );

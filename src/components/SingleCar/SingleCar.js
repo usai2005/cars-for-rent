@@ -37,7 +37,7 @@ const SingleCar = ({
   const [isThisCarFavorite, setIsThisCarFavorite] = useState(false);
 
   useEffect(() => {
-    chosenFavoriteCars.length > 0 &&
+    chosenFavoriteCars &&
       setIsThisCarFavorite(
         chosenFavoriteCars.some(chosenCar => chosenCar.id === id)
       );
